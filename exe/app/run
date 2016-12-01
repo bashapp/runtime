@@ -1,0 +1,38 @@
+#!/bin/bash
+
+APP_NAME="$1"; shift
+
+if [[ -z "${APP_NAME}" ]]; then
+  exit 255
+fi
+
+APP_REPO="${APP_HOME}/apps"
+
+mkdir -p "${APP_REPO}"
+
+APP_PATH="${APP_REPO}/${APP_NAME}"
+
+if [[ ! -d "${APP_PATH}" ]]; then
+  echo "ERROR: '${APP_NAME}' is not installed, yet"
+  exit 255
+fi
+
+APP_CODE="${APP_PATH}/code"
+APP_HOME="${APP_PATH}/home"
+
+mkdir -p "${APP_HOME}"
+
+if [[ ! -d "${APP_CODE}" || ! -d "${APP_HOME}" ]]; then
+  echo "ERROR; '${APP_NAME}' is invalid"
+  exit 255
+fi
+
+APP_MAIN="${APP_PATH}/code/main"
+
+load_ext "${APP_CODE}" "${APP_HOME}" "${APP_NAME}"
+if [[ -f "${APP_MAIN}" ]]; then
+  source "${APP_MAIN}"
+else
+  # Run the default behavior if the entry is missing
+  load_app $@
+fi

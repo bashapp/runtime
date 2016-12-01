@@ -1,0 +1,123 @@
+#!/bin/bash
+
+###
+### Process-wide configuration(S)
+###
+SELF_PID=$$
+
+###
+### System-wide configuration(s)
+###
+BRT_BASE="`realpath -s "$0" | xargs -i dirname {}`/.."
+
+###
+### User-wide configuration(s)
+###
+if [[ -z ${BRT_HOME} ]]; then
+  BRT_HOME="${HOME}/.brt"
+fi
+
+mkdir -p "${BRT_HOME}"
+
+###
+### Application-wide configuration(s)
+###
+APP_BASE="${BRT_BASE}"
+APP_HOME="${BRT_HOME}"
+
+###
+### Function(s)
+###
+function show_base()
+{
+  echo "${APP_BASE}"
+}
+
+function show_home()
+{
+  echo "${APP_HOME}"
+}
+
+function show_usage()
+{
+  echo "USAGE: ${SELF_HEAD} [COMMAND]"
+  echo
+  echo "AVAILABLE COMMANDS:"
+
+  pushd "${CURR_BASE}" > /dev/null
+  for COMMAND in `ls`; do
+    echo "  ${COMMAND}"
+  done
+  popd > /dev/null
+}
+
+function load_ext()
+{
+  local NEXT_BASE="$1"
+  local NEXT_HOME="$2"
+  local NEXT_NAME="$3"
+
+  # TODO Basic Checking
+
+  APP_BASE="${NEXT_BASE}"
+  APP_HOME="${NEXT_HOME}"
+
+  # Update 'SELF_HEAD'
+  SELF_HEAD="${SELF_HEAD} ${NEXT_NAME}"
+}
+
+function load_lib()
+{
+  local NAME="$1"
+  local FROM="$2"
+
+  if [[ -n "${FROM}" && -f "${FROM}/${NAME}" ]]; then
+    source "${FROM}/${NAME}"
+    return
+  fi
+
+  if [[ -f "${APP_BASE}/lib/${NAME}" ]]; then
+    source "${APP_BASE}/lib/${NAME}"
+    return
+  fi
+}
+
+function load_app()
+{
+  if [[ -z ${SELF_KIND} ]]; then
+    SELF_KIND="exe"
+  fi
+
+  CURR_BASE="${APP_BASE}/${SELF_KIND}"
+
+  while [[ -n $1 ]]; do
+    SELF_NAME=$1
+
+    shift
+
+    NEXT_PATH="${CURR_BASE}/${SELF_NAME}"
+    NEXT_HEAD="${SELF_HEAD} ${SELF_NAME}"
+
+    if [[ -f "${NEXT_PATH}" ]]; then
+      SELF_HEAD="${NEXT_HEAD}"
+
+      source "${NEXT_PATH}" $@
+
+      exit $?
+    elif [[ -d "${NEXT_PATH}" ]]; then
+      CURR_BASE="${NEXT_PATH}"
+      SELF_HEAD="${NEXT_HEAD}"
+
+      # NEXT
+    else
+      echo "ERROR: COMMAND '${SELF_NAME}' is invalid"
+      echo
+      break
+    fi
+  done
+
+  show_usage
+  exit 255
+}
+
+load_app $@
