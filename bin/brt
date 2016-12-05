@@ -8,7 +8,9 @@ SELF_PID=$$
 ###
 ### System-wide configuration(s)
 ###
-BRT_BASE="`realpath -s "$0" | xargs -i dirname {}`/.."
+BRT_PATH=`realpath -s "$0"`
+BRT_NAME=`basename "${BRT_PATH}"`
+BRT_BASE="`dirname "${BRT_PATH}"`/.."
 
 ###
 ### User-wide configuration(s)
@@ -24,6 +26,11 @@ mkdir -p "${BRT_HOME}"
 ###
 APP_BASE="${BRT_BASE}"
 APP_HOME="${BRT_HOME}"
+
+###
+###
+###
+SELF_HEAD="${BRT_NAME}"
 
 ###
 ### Function(s)
