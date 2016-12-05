@@ -1,11 +1,6 @@
 #!/bin/bash
 
 ###
-### Process-wide configuration(S)
-###
-SELF_PID=$$
-
-###
 ### System-wide configuration(s)
 ###
 BRT_PATH=`realpath -s "$0"`
@@ -28,8 +23,9 @@ APP_BASE="${BRT_BASE}"
 APP_HOME="${BRT_HOME}"
 
 ###
+### Process-wide configuration(S)
 ###
-###
+SELF_PID=$$
 SELF_HEAD="${BRT_NAME}"
 
 ###
