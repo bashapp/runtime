@@ -87,9 +87,7 @@ function load_lib()
 
 function load_app()
 {
-  if [[ -z ${SELF_KIND} ]]; then
-    SELF_KIND="exe"
-  fi
+  local SELF_KIND="exe"
 
   CURR_BASE="${APP_BASE}/${SELF_KIND}"
 
