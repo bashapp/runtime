@@ -1,0 +1,10 @@
+#!/bin/bash
+
+APP_REPO="${APP_HOME}/apps"
+
+mkdir -p "${APP_REPO}"
+(
+  pushd "${APP_REPO}" > /dev/null
+  ls
+  popd > /dev/null
+)
