@@ -6,10 +6,6 @@ if [[ -z "${APP_NAME}" ]]; then
   exit 255
 fi
 
-APP_REPO="${APP_HOME}/apps"
-
-mkdir -p "${APP_REPO}"
-
 APP_PATH="${APP_REPO}/${APP_NAME}"
 
 if [[ ! -d "${APP_PATH}" ]]; then

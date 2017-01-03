@@ -21,6 +21,9 @@ mkdir -p "${BRT_HOME}"
 ###
 APP_BASE="${BRT_BASE}"
 APP_HOME="${BRT_HOME}"
+APP_REPO="${APP_HOME}/apps"
+
+mkdir -p "${APP_REPO}"
 
 ###
 ### Process-wide configuration(S)
