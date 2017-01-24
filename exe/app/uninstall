@@ -1,0 +1,17 @@
+#!/bin/bash
+
+APP_NAME="$1"; shift
+
+if [[ -z "${APP_NAME}" ]]; then
+  echo "USAGE: ${SELF_HEAD} [NAME]"
+  exit 255
+fi
+
+APP_PATH="${APP_REPO}/${APP_NAME}"
+
+if [[ ! -d "${APP_PATH}" ]]; then
+  echo "ERROR: '${APP_NAME}' is not installed"
+  exit 255
+fi
+
+rm -rf "${APP_PATH}"
