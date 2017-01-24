@@ -1,0 +1,30 @@
+#!/bin/bash
+
+NAME="$1"; shift
+URL="$1"; shift
+
+if [[ -z "${NAME}" || -z "${URL}" ]]; then
+  echo "USAGE: ${SELF_HEAD} [NAME] [URL]"
+  exit 255
+fi
+
+APP_PATH="${APP_REPO}/${NAME}"
+
+if [[ -d "${APP_PATH}" ]]; then
+  echo "ERROR: '${APP_NAME}' is already installed, yet"
+  exit 255
+fi
+
+mkdir -p "${APP_PATH}"
+
+APP_CODE="${APP_PATH}/code"
+APP_HOME="${APP_PATH}/home"
+
+mkdir -p "${APP_CODE}" "${APP_HOME}"
+
+git clone "${URL}" "${APP_CODE}"
+
+if [[ $? -ne 0 ]]; then
+  echo "ERROR: Fail to install"
+  rm -rf "${APP_PATH}"
+fi
