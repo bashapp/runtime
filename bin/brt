@@ -34,12 +34,12 @@ SELF_HEAD="${BRT_NAME}"
 ###
 ### Function(s)
 ###
-function show_base()
+function show_code_path()
 {
   echo "${APP_BASE}"
 }
 
-function show_home()
+function show_data_path()
 {
   echo "${APP_HOME}"
 }
