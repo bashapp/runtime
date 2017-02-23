@@ -1,5 +1,5 @@
-# BASH Runtime
+# What is BASH runtime?
 
-A Runtime for BASH applications which
+A runtime for BASH applications which
  - allows users to manage BASH applications (install/uninstall/run/lst) easily, and
- - allows application to manage its code and data easily.
+ - allows BASH applications to manage its code and data easily.
