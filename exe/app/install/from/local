@@ -1,0 +1,31 @@
+#!/bin/bash
+
+NAME="$1"; shift
+FROM="$1"; shift
+
+if [[ -z "${NAME}" || -z "${FROM}" ]]; then
+  echo "USAGE: ${SELF_HEAD} [NAME] [LOCAL PATH]"
+  exit 255
+fi
+
+if [[ ! -d "${FROM}" ]]; then
+  echo "ERROR: '${FROM}' does not exist"
+  exit 255
+fi
+
+LOCAL_PATH=`realpath "${FROM}"`
+
+APP_PATH="${APP_REPO}/${NAME}"
+
+if [[ -d "${APP_PATH}" ]]; then
+  echo "ERROR: '${APP_NAME}' is already installed"
+  exit 255
+fi
+
+APP_CODE="${APP_PATH}/code"
+APP_HOME="${APP_PATH}/home"
+
+mkdir -p "${APP_PATH}"
+mkdir -p "${APP_HOME}"
+
+ln -sf "${LOCAL_PATH}" "${APP_CODE}"
