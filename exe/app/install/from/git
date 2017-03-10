@@ -8,7 +8,8 @@ if [[ -z "${NAME}" || -z "${URL}" ]]; then
   exit 255
 fi
 
-APP_PATH="${APP_REPO}/${NAME}"
+APP_NAME="${NAME}"
+APP_PATH="${APP_REPO}/${APP_NAME}"
 
 if [[ -d "${APP_PATH}" ]]; then
   echo "ERROR: '${APP_NAME}' is already installed"
@@ -28,3 +29,6 @@ if [[ $? -ne 0 ]]; then
   echo "ERROR: Fail to install"
   rm -rf "${APP_PATH}"
 fi
+
+git -C "${APP_CODE}" submodule init
+git -C "${APP_CODE}" submodule update
