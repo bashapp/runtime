@@ -6,7 +6,7 @@ if [[ -z "${APP_NAME}" ]]; then
   exit 255
 fi
 
-APP_PATH="${APP_REPO}/${APP_NAME}"
+APP_PATH=$(show_app_path "${APP_NAME}")
 
 if [[ ! -d "${APP_PATH}" ]]; then
   echo "ERROR: '${APP_NAME}' is not installed, yet"

@@ -25,6 +25,13 @@ APP_REPO="${APP_HOME}/apps"
 
 mkdir -p "${APP_REPO}"
 
+function show_app_path()
+{
+  local APP_NAME="$1"
+
+  echo "${APP_REPO}/${APP_NAME}"
+}
+
 ###
 ### Process-wide configuration(S)
 ###
