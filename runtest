@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e # Stop at the first error
+
+BASE="${PWD}"
+
+# Check basic workflow
+{
+  APP_NAME="hello"
+
+  "${BASE}/bin/brt" app install from local "${APP_NAME}" "${BASE}/samples/hello"
+  "${BASE}/bin/brt" app lst
+  "${BASE}/bin/brt" app run "${APP_NAME}"
+  "${BASE}/bin/brt" app uninstall "${APP_NAME}"
+}
