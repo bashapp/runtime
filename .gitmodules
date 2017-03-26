@@ -1,0 +1,3 @@
+[submodule "samples/hello"]
+	path = samples/hello
+	url = http://github.com/bashapp/hello.git
