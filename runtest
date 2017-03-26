@@ -13,3 +13,12 @@ BASE="${PWD}"
   "${BASE}/bin/brt" app run "${APP_NAME}"
   "${BASE}/bin/brt" app uninstall "${APP_NAME}"
 }
+
+# Check install from git
+{
+  APP_NAME="jenkins"
+
+  "${BASE}/bin/brt" app install from git "${APP_NAME}" "https://github.com/parjong/bash-jenkins-agent.git"
+  "${BASE}/bin/brt" app lst
+  "${BASE}/bin/brt" app uninstall "${APP_NAME}"
+}
