@@ -32,6 +32,13 @@ function show_app_path()
   echo "${APP_REPO}/${APP_NAME}"
 }
 
+function show_app_list()
+{
+  pushd "${APP_REPO}" > /dev/null
+  ls
+  popd > /dev/null
+}
+
 ###
 ### Process-wide configuration(S)
 ###
