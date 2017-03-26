@@ -9,7 +9,7 @@ if [[ -z "${NAME}" || -z "${URL}" ]]; then
 fi
 
 APP_NAME="${NAME}"
-APP_PATH="${APP_REPO}/${APP_NAME}"
+APP_PATH=$(show_app_path "${APP_NAME}")
 
 if [[ -d "${APP_PATH}" ]]; then
   echo "ERROR: '${APP_NAME}' is already installed"
