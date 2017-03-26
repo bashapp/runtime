@@ -4,7 +4,7 @@ set -e # Stop at the first error
 
 BASE="${PWD}"
 
-# Check basic workflow
+echo ">>> Check 'install from local' workflow"
 {
   APP_NAME="hello"
 
@@ -14,7 +14,7 @@ BASE="${PWD}"
   "${BASE}/bin/brt" app uninstall "${APP_NAME}"
 }
 
-# Check install from git
+echo ">>> Check 'install from git' workflow"
 {
   APP_NAME="hello-remote"
 
