@@ -16,9 +16,10 @@ BASE="${PWD}"
 
 # Check install from git
 {
-  APP_NAME="jenkins"
+  APP_NAME="hello-remote"
 
-  "${BASE}/bin/brt" app install from git "${APP_NAME}" "https://github.com/parjong/bash-jenkins-agent.git"
+  "${BASE}/bin/brt" app install from git "${APP_NAME}" "https://github.com/bashapp/hello.git"
   "${BASE}/bin/brt" app lst
+  "${BASE}/bin/brt" app run "${APP_NAME}"
   "${BASE}/bin/brt" app uninstall "${APP_NAME}"
 }
