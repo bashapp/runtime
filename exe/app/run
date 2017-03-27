@@ -23,7 +23,7 @@ if [[ ! -d "${APP_CODE}" || ! -d "${APP_HOME}" ]]; then
   exit 255
 fi
 
-APP_MAIN="${APP_PATH}/code/main"
+APP_MAIN="${APP_CODE}/main"
 
 load_ext "${APP_CODE}" "${APP_HOME}" "${APP_NAME}"
 if [[ -f "${APP_MAIN}" ]]; then
