@@ -3,9 +3,8 @@
 ###
 ### System-wide configuration(s)
 ###
-BRT_PATH=`realpath -s "$0"`
-BRT_NAME=`basename "${BRT_PATH}"`
-BRT_BASE="`dirname "${BRT_PATH}"`/.."
+BRT_NAME=$( basename "$0" )
+BRT_BASE="$( cd "$( dirname "$0" )" && pwd )/.."
 
 ###
 ### User-wide configuration(s)
