@@ -1,0 +1,6 @@
+#!/bin/bash
+
+MESSAGE_PATH="$(show_data_path)/$1"
+
+echo "Write a message to '${MESSAGE_PATH}'"
+echo "Hello, World!!" > "${MESSAGE_PATH}"

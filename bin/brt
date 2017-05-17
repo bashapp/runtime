@@ -103,6 +103,9 @@ function load_lib()
 
 function load_app()
 {
+  APP_BASE="$1"; shift
+  APP_HOME="$1"; shift
+
   local SELF_KIND="exe"
 
   CURR_BASE="${APP_BASE}/${SELF_KIND}"
@@ -137,4 +140,4 @@ function load_app()
   exit 255
 }
 
-load_app $@
+load_app "${APP_BASE}" "${APP_HOME}" $@

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+CODE_PATH="$(show_code_path)"
+DATA_PATH="$(show_data_path)"
+
+SUBAPP_CODE_PATH="${CODE_PATH}/sub"
+SUBAPP_DATA_PATH="${DATA_PATH}/sub"
+
+mkdir -p "${SUBAPP_DATA_PATH}"
+
+echo "Run 'message show'"
+(
+  load_app "${SUBAPP_CODE_PATH}" "${SUBAPP_DATA_PATH}" "message" "show"
+)
+
+echo "Run 'message write'"
+
+MESSAGE_FILE_NAME="MESSAGE"
+MESSAGE_FILE_PATH="${SUBAPP_DATA_PATH}/${MESSAGE_FILE_NAME}"
+
+(
+  load_app "${SUBAPP_CODE_PATH}" "${SUBAPP_DATA_PATH}" "message" "write" "${MESSAGE_FILE_NAME}"
+)
+
+if [[ ! -f "${MESSAGE_FILE_PATH}" ]]; then
+  echo "ERROR: message write does not work"
+  exit 255
+fi
+
+cat "${MESSAGE_FILE_PATH}"

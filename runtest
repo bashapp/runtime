@@ -23,3 +23,13 @@ echo ">>> Check 'install from git' workflow"
   "${BASE}/bin/brt" app run "${APP_NAME}"
   "${BASE}/bin/brt" app uninstall "${APP_NAME}"
 }
+
+echo ">>> Check 'load_app' feature"
+{
+  APP_NAME="load_app"
+
+  "${BASE}/bin/brt" app install from local "${APP_NAME}" "${BASE}/samples/load_app"
+  "${BASE}/bin/brt" app lst
+  "${BASE}/bin/brt" app run "${APP_NAME}"
+  "${BASE}/bin/brt" app uninstall "${APP_NAME}"
+}

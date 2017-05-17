@@ -30,5 +30,5 @@ if [[ -f "${APP_MAIN}" ]]; then
   source "${APP_MAIN}"
 else
   # Run the default behavior if the entry is missing
-  load_app $@
+  load_app "${APP_CODE}" "${APP_HOME}" $@
 fi
