@@ -13,7 +13,7 @@ if [[ ! -d "${FROM}" ]]; then
   exit 255
 fi
 
-LOCAL_PATH=`realpath "${FROM}"`
+LOCAL_PATH=$(cd "${FROM}" && pwd)
 
 APP_NAME="${NAME}"
 APP_PATH=$(show_app_path "${APP_NAME}")
