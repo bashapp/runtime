@@ -121,7 +121,7 @@ function load_app()
     if [[ -f "${NEXT_PATH}" ]]; then
       SELF_HEAD="${NEXT_HEAD}"
 
-      source "${NEXT_PATH}" $@
+      source "${NEXT_PATH}" "$@"
 
       exit $?
     elif [[ -d "${NEXT_PATH}" ]]; then
@@ -140,4 +140,4 @@ function load_app()
   exit 255
 }
 
-load_app "${APP_BASE}" "${APP_HOME}" $@
+load_app "${APP_BASE}" "${APP_HOME}" "$@"
