@@ -1,0 +1,13 @@
+#!/bin/bash
+
+EXPECTED=$1; shift
+OBTAINED=0
+
+for ARG in "$@"; do
+  OBTAINED=$(($OBTAINED + 1))
+done
+
+if [[ $EXPECTED -ne $OBTAINED ]]; then
+  echo "$EXPECTED is expected, but $OBTAINED is obtained"
+  exit 100
+fi
